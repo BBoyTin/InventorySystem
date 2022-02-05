@@ -1,17 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Tin.CharacterStats;
 
-public class InventoryManager : MonoBehaviour
+public class Character : MonoBehaviour
 {
+
+    public CharacterStat Strength;
+    public CharacterStat Agility;
+    public CharacterStat Intelligance;
+    public CharacterStat Vitality;
+
     [SerializeField]
     Inventory _inventory;
     [SerializeField]
     EquippmentPanel _equippmentPanel;
+    [SerializeField]
+    StatPanel _statPanel;
 
 
     private void Awake()
     {
+        _statPanel.SetStats(Strength, Agility, Intelligance, Vitality);
+        _statPanel.UpdateStatValues();
+
         _inventory.OnItemRightClickEvent += EquipFromInventory;
         _equippmentPanel.OnItemRightClickEvent += UnEquipFromEquipPanel;
     }
@@ -40,9 +50,14 @@ public class InventoryManager : MonoBehaviour
             if(previousItem != null)
             {
                 _inventory.AddItem(previousItem);
-                
+                previousItem.Unequip(this);
+                _statPanel.UpdateStatValues();
+
             }
             _inventory.RemoveItem(item);
+
+            item.Equip(this);
+            _statPanel.UpdateStatValues();
         }
         else
         {
@@ -54,6 +69,8 @@ public class InventoryManager : MonoBehaviour
     {
         if (!_inventory.IsFull() && _equippmentPanel.RemoveItem(item))
         {
+            item.Unequip(this);
+            _statPanel.UpdateStatValues();
             _inventory.AddItem(item);
         }
     }

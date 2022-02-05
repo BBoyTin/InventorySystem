@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ItemSlot : MonoBehaviour,IPointerClickHandler
+public class ItemSlot : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,    IPointerExitHandler
 {
     [SerializeField]
     private Image _image;
@@ -14,6 +14,8 @@ public class ItemSlot : MonoBehaviour,IPointerClickHandler
 
     [SerializeField]
     private Item _item;
+    [SerializeField]
+    private ItemTooltip _tooltip;
     public Item Item
     {
         get { return _item; }
@@ -51,6 +53,20 @@ public class ItemSlot : MonoBehaviour,IPointerClickHandler
     {
         if (_image == null)
             _image = GetComponent<Image>();
+
+        if (_tooltip == null)
+        {
+            _tooltip = FindObjectOfType<ItemTooltip>();
+        }
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _tooltip.ShowTooltip(Item);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _tooltip.HideTooltip();
+    }
 }
