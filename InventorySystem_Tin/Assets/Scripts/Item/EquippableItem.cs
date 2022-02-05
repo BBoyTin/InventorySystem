@@ -46,8 +46,16 @@ public class EquippableItem : Item
 		c.Vitality.RemoveAllModifiersFromSource(this);
 	}
 
-	
-	public override string GetItemType()
+    public override Item GetCopy()
+    {
+        return Instantiate(this);
+    }
+
+    public override void DestroyItem()
+    {
+        Destroy(this);
+    }
+    public override string GetItemType()
     {
 		return EquipmentType.ToString();
 

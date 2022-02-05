@@ -9,6 +9,8 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 {
     [SerializeField]
     private Image _image;
+    [SerializeField]
+    private Text _amountText;
 
     public event Action<ItemSlot> OnPointerEnterEvent;
     public event Action<ItemSlot> OnPointerExitEvent;
@@ -49,13 +51,33 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     }
 
 
+    private int _amount;
+    public int Amount
+    {
+        get { return _amount; }
+        set
+        {
+            _amount = value;
 
+            if (_item != null && _item.MaximumStacks > 1 && _amount > 1)
+            {
+                _amountText.text = _amount.ToString();
+            }
+            else
+            {
+                _amountText.text = "";
+            }
+        }
+    }
   
 
     protected virtual void OnValidate()
     {
         if (_image == null)
             _image = GetComponent<Image>();
+
+        if (_amountText == null)
+            _amountText = GetComponentInChildren<Text>();
 
     }
 

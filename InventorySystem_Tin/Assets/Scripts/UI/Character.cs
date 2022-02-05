@@ -122,6 +122,9 @@ public class Character : MonoBehaviour
     }
     private void Drop(ItemSlot dropItemSlot)
     {
+        if (dropItemSlot == null)
+            return;
+
         if(dropItemSlot.CanReciveItem(_draggedSlot.Item) && _draggedSlot.CanReciveItem(dropItemSlot.Item))
         {
             EquippableItem dragItem = _draggedSlot.Item as EquippableItem;
@@ -155,8 +158,13 @@ public class Character : MonoBehaviour
     private void SwapItems(ItemSlot dropItemSlot)
     {
         Item draggedItem = _draggedSlot.Item;
+        int draggedItemAmount = _draggedSlot.Amount;
+
         _draggedSlot.Item = dropItemSlot.Item;
+        _draggedSlot.Amount = dropItemSlot.Amount;
+
         dropItemSlot.Item = draggedItem;
+        dropItemSlot.Amount = draggedItemAmount;
     }
 
     public void Equip(EquippableItem item)

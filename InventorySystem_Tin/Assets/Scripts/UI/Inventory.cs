@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour,IItemContainer
 {
 
     [SerializeField]
@@ -53,22 +53,44 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < _itemSlots.Length; i++)
         {
-            if (_itemSlots[i].Item == null)
+            if (_itemSlots[i].Item == null || (_itemSlots[i].Item.ID==item.ID && _itemSlots[i].Amount <item.MaximumStacks))
             {
                 _itemSlots[i].Item = item;
+                _itemSlots[i].Amount++;
                 return true;
             }
         }
         return false;
     }
-
+    public Item RemoveItem(string itemID)
+    {
+        for (int i = 0; i < _itemSlots.Length; i++)
+        {
+            Item item = _itemSlots[i].Item;
+            if (item != null && item.ID == itemID)
+            {
+                _itemSlots[i].Amount--;
+                if (_itemSlots[i].Amount <= 0)
+                {
+                    _itemSlots[i].Item = null;
+                }
+                return item;
+            }
+        }
+        return null;
+    }
     public bool RemoveItem(Item item)
     {
         for (int i = 0; i < _itemSlots.Length; i++)
         {
             if (_itemSlots[i].Item == item)
             {
-                _itemSlots[i].Item = null;
+                _itemSlots[i].Amount--;
+                if (_itemSlots[i].Amount <= 0)
+                {
+                    _itemSlots[i].Item = null;
+                }
+                
                 return true;
             }
         }
@@ -92,12 +114,33 @@ public class Inventory : MonoBehaviour
         int i = 0;
         for (; i < _startingItems.Count && i<_itemSlots.Length; i++)
         {
-            _itemSlots[i].Item = _startingItems[i];
+            _itemSlots[i].Item = _startingItems[i].GetCopy();
+            _itemSlots[i].Amount = 1;
         }
         for (; i < _itemSlots.Length; i++)
         {
             _itemSlots[i].Item = null;
+            _itemSlots[i].Amount = 0;
         }
         
     }
+
+
+
+
+
+    public int ItemCount(string itemID)
+    {
+        int numberOfItemsCounter = 0;
+        for (int i = 0; i < _itemSlots.Length; i++)
+        {
+            if (_itemSlots[i].Item.ID == itemID)
+            {
+                numberOfItemsCounter++;
+            }
+        }
+        return numberOfItemsCounter;
+    }
+
+ 
 }
