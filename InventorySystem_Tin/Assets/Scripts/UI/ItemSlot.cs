@@ -5,17 +5,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ItemSlot : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,    IPointerExitHandler
+public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IEndDragHandler, IDragHandler,IDropHandler
 {
     [SerializeField]
     private Image _image;
 
-    public event Action<Item> OnRightClickEvent;
+    public event Action<ItemSlot> OnPointerEnterEvent;
+    public event Action<ItemSlot> OnPointerExitEvent;
+    
+
+    public event Action<ItemSlot> OnRightClickEvent;
+    public event Action<ItemSlot> OnBeginDragEvent;
+    public event Action<ItemSlot> OnEndDragEvent;
+    public event Action<ItemSlot> OnDragEvent;
+    public event Action<ItemSlot> OnDropEvent;
+
+
+    //ne zelim gasiti image nego staviti da bude transparentna
+    private Color _normalColor = Color.white;
+    private Color _disabledColor = new Color(1, 1, 1, 0);
+
 
     [SerializeField]
     private Item _item;
-    [SerializeField]
-    private ItemTooltip _tooltip;
+
     public Item Item
     {
         get { return _item; }
@@ -24,49 +37,70 @@ public class ItemSlot : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
             _item = value;
             if (_item == null)
             {
-                _image.enabled = false;
+                _image.color = _disabledColor;
             }
             else
             {
                 _image.sprite = _item.Icon;
-                _image.enabled = true;
+                _image.color = _normalColor;
             }
 
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(eventData != null && eventData.button == PointerEventData.InputButton.Right)
-        {
-            
-            if (OnRightClickEvent == null)
-                Debug.Log("event problem");
-           if(Item !=null && OnRightClickEvent != null)
-            {
-                OnRightClickEvent(Item);
-            }
-        }
-    }
+
+
+  
 
     protected virtual void OnValidate()
     {
         if (_image == null)
             _image = GetComponent<Image>();
 
-        if (_tooltip == null)
-        {
-            _tooltip = FindObjectOfType<ItemTooltip>();
-        }
     }
 
+    public virtual bool CanReciveItem(Item item)
+    {
+        return true;
+    }
+
+  public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData != null && eventData.button == PointerEventData.InputButton.Right)
+        {
+            OnRightClickEvent?.Invoke(this);
+        }
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _tooltip.ShowTooltip(Item);
+
+        OnPointerEnterEvent?.Invoke(this);
+        //_tooltip.ShowTooltip(Item);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _tooltip.HideTooltip();
+        OnPointerExitEvent?.Invoke(this);
+        //_tooltip.HideTooltip();
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        OnBeginDragEvent?.Invoke(this);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        OnEndDragEvent?.Invoke(this);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        OnDragEvent?.Invoke(this);
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        OnDropEvent?.Invoke(this);
     }
 }

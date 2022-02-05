@@ -12,14 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
   m_Name: AxeEquipable
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: Just an Axe
   Icon: {fileID: 21300000, guid: e5a04c791195bab48850d1d0417b9fe1, type: 3}
   StrengthBonus: 7
   AgilityBonus: 0
   IntelligenceBonus: 0
   VitalityBonus: 0
-  StrengthPercentBonus: 0
-  AgilityPercentBonus: 0
-  IntelligencePercentBonus: 0
-  VitalityPercentBonus: 0
   EquipmentType: 2

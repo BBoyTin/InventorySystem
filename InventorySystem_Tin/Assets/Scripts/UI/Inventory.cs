@@ -5,22 +5,37 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+
     [SerializeField]
-    List<Item> _items;
+    List<Item> _startingItems;
     [SerializeField]
     Transform _itemsParent;
     [SerializeField]
     ItemSlot[] _itemSlots;
 
-    public event Action<Item> OnItemRightClickEvent;
+    public event Action<ItemSlot> OnPointerEnterEvent;
+    public event Action<ItemSlot> OnPointerExitEvent;
+
+
+    public event Action<ItemSlot> OnRightClickEvent;
+    public event Action<ItemSlot> OnBeginDragEvent;
+    public event Action<ItemSlot> OnEndDragEvent;
+    public event Action<ItemSlot> OnDragEvent;
+    public event Action<ItemSlot> OnDropEvent;
 
     private void Start()
     {
         for (int i = 0; i < _itemSlots.Length; i++)
         {
-            _itemSlots[i].OnRightClickEvent += OnItemRightClickEvent;
+            _itemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
+            _itemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
+            _itemSlots[i].OnRightClickEvent += OnRightClickEvent;
+            _itemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
+            _itemSlots[i].OnEndDragEvent += OnEndDragEvent;
+            _itemSlots[i].OnDragEvent += OnDragEvent;
+            _itemSlots[i].OnDropEvent += OnDropEvent;
         }
-        RefreshUI();
+        SetStartingItems();
     }
 
     private void OnValidate()
@@ -30,42 +45,54 @@ public class Inventory : MonoBehaviour
             _itemSlots = _itemsParent.GetComponentsInChildren<ItemSlot>();
         }
 
-        RefreshUI();
+        SetStartingItems();
     }
 
 
     public bool AddItem(Item item)
     {
-        if (IsFull())
+        for (int i = 0; i < _itemSlots.Length; i++)
         {
-            return false;
+            if (_itemSlots[i].Item == null)
+            {
+                _itemSlots[i].Item = item;
+                return true;
+            }
         }
-        _items.Add(item);
-        RefreshUI();
-        return true;
+        return false;
     }
 
     public bool RemoveItem(Item item)
     {
-        if (_items.Remove(item))
+        for (int i = 0; i < _itemSlots.Length; i++)
         {
-            RefreshUI();
-            return true;
+            if (_itemSlots[i].Item == item)
+            {
+                _itemSlots[i].Item = null;
+                return true;
+            }
         }
         return false;
     }
 
     public bool IsFull()
     {
-        return _items.Count >= _itemSlots.Length;
+        for (int i = 0; i < _itemSlots.Length; i++)
+        {
+            if (_itemSlots[i].Item == null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public void RefreshUI()
+    public void SetStartingItems()
     {
         int i = 0;
-        for (; i < _items.Count && i<_itemSlots.Length; i++)
+        for (; i < _startingItems.Count && i<_itemSlots.Length; i++)
         {
-            _itemSlots[i].Item = _items[i];
+            _itemSlots[i].Item = _startingItems[i];
         }
         for (; i < _itemSlots.Length; i++)
         {
