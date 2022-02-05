@@ -68,4 +68,7 @@ public class EquippmentPanel : MonoBehaviour
 		return false;
 	}
 
+
+
+
 }
