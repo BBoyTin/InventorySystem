@@ -14,9 +14,12 @@ public class PickUpItems : MonoBehaviour
 	{
         if (collision.gameObject.GetComponent<ItemInWorld>() != null)
         {
-			Item itemCopy = collision.gameObject.GetComponent<ItemInWorld>().GetItem().GetCopy();
-            if (_inventory.AddItem(itemCopy))
+			
+			ItemInWorld itemInWorld = collision.gameObject.GetComponent<ItemInWorld>();
+
+            if (_inventory.AddItem(itemInWorld.GetItem().GetCopy(),itemInWorld.GetAmountOfThisItem()))
             {
+
 				Destroy(collision.gameObject);
 
 			}

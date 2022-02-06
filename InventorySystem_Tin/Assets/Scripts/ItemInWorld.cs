@@ -10,6 +10,9 @@ public class ItemInWorld : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _spriteRenderer;
 
+    [SerializeField]
+    int _amaontOfThisItem=1;
+
     protected virtual void OnValidate()
     {
         if (_spriteRenderer == null)
@@ -29,6 +32,10 @@ public class ItemInWorld : MonoBehaviour
         _spriteRenderer.sprite = _item.Icon;
     }
 
+    public int GetAmountOfThisItem()
+    {
+        return _amaontOfThisItem;
+    }
     public Item GetItem()
     {
         return _item;

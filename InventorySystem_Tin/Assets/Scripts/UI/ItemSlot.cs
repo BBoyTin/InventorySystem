@@ -125,4 +125,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     {
         OnDropEvent?.Invoke(this);
     }
+
+    public bool CanAddStack(Item item, int amount = 1)
+    {
+        return Item != null && Item.ID == item.ID;
+    }
 }

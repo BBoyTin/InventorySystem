@@ -53,10 +53,24 @@ public class Inventory : MonoBehaviour,IItemContainer
     {
         for (int i = 0; i < _itemSlots.Length; i++)
         {
-            if (_itemSlots[i].Item == null || (_itemSlots[i].Item.ID==item.ID && _itemSlots[i].Amount <item.MaximumStacks))
+            if (_itemSlots[i].Item == null || (_itemSlots[i].Item.ID == item.ID && _itemSlots[i].Amount < item.MaximumStacks))
             {
                 _itemSlots[i].Item = item;
                 _itemSlots[i].Amount++;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool AddItem(Item item,int amountToAdd)
+    {
+        for (int i = 0; i < _itemSlots.Length; i++)
+        {
+            if (_itemSlots[i].Item == null || (_itemSlots[i].Item.ID == item.ID && _itemSlots[i].Amount < item.MaximumStacks))
+            {
+                _itemSlots[i].Item = item;
+                _itemSlots[i].Amount+= amountToAdd;
                 return true;
             }
         }

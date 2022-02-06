@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 
-//https://assetstore.unity.com/packages/tools/integration/character-stats-106351
+
 namespace Tin.CharacterStats
 {
 	[Serializable]

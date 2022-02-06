@@ -1,6 +1,4 @@
 
-//https://assetstore.unity.com/packages/tools/integration/character-stats-106351
-
 namespace Tin.CharacterStats
 {
 	public enum StatModType

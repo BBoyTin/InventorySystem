@@ -14,7 +14,8 @@ public class Item : ScriptableObject
     public string ItemName;
     public Sprite Icon;
 
-    [Range(1, 1000)]
+    //zadatak trazi da moze imati max int stacks, inace bi ovako!!!
+   // [Range(1, 1000)]
     public int MaximumStacks = 1;
 
     private void OnValidate()
