@@ -99,6 +99,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         if (_amountText == null)
             _amountText = GetComponentInChildren<Text>();
 
+        Item = _item;
+        Amount = _amount;
+
     }
 
     protected virtual void OnDisable()

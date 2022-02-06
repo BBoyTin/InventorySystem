@@ -7,7 +7,7 @@ public class PickUpItems : MonoBehaviour
 
 
 	[SerializeField]
-	Inventory _inventory;
+	InfiniteInventory _inventory;
 
 
 	private void OnTriggerEnter2D(Collider2D collision)

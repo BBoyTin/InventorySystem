@@ -8,7 +8,7 @@ public class AddCoins : MonoBehaviour
     [SerializeField] Item item;
 
 
-    [SerializeField] Inventory inventory;
+    [SerializeField] InfiniteInventory inventory;
 
     [SerializeField] KeyCode addCoinKeyCode = KeyCode.X;
 

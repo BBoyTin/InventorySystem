@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     DropItemArea _dropItemArea;
     [SerializeField]
-    Inventory _inventory;
+    InfiniteInventory _inventory;
     [SerializeField]
     EquippmentPanel _equippmentPanel;
     [SerializeField]
