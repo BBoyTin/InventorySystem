@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Sword 1
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  _id: 44e9024158b7bf242a2bb192a12684f8
-  ItemName: Sword++
-  Icon: {fileID: 21300000, guid: d754d2baf0416aa43bec1dc48df6ef2f, type: 3}
+  _id: 3f666477aeff7c84fb11788747ec9678
+  ItemName: Sword1
+  Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
   MaximumStacks: 1
-  StrengthBonus: 20
-  AgilityBonus: 4
-  IntelligenceBonus: 2
-  VitalityBonus: 6
+  StrengthBonus: 1
+  AgilityBonus: 1
+  IntelligenceBonus: 1
+  VitalityBonus: 1
   EquipmentType: 2

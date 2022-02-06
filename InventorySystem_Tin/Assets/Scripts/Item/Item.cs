@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Item/Basic Item")]
 public class Item : ScriptableObject
 {
     [SerializeField]
@@ -33,7 +33,7 @@ public class Item : ScriptableObject
 
     public virtual void DestroyItem()
     {
-        Destroy(this);
+        Debug.Log("this needs to be overriten");
     }
 
     public virtual string GetItemType()
@@ -43,7 +43,12 @@ public class Item : ScriptableObject
 
     public virtual string GetDescription()
     {
-        return "";
+        if (MaximumStacks ==int.MaxValue)
+        {
+            return "Max Stacks: INFINITE" ;
+        }
+
+        return "Max Stacks: "+ MaximumStacks;
     }
 }
 
@@ -63,5 +68,7 @@ public interface IItemContainer
     bool RemoveItem(Item item);
     bool AddItem(Item item);
     bool IsFull();
+
+    void Clear();
 
 }

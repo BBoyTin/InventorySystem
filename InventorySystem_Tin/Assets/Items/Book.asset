@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 644ab9329940a9c4a909edc1b1aa1acf, type: 3}
-  m_Name: Coin
+  m_Name: Book
   m_EditorClassIdentifier: 
-  _id: 9f6a8d6da905d964f87539c96b0bb22c
-  ItemName: Coin
-  Icon: {fileID: 21300000, guid: 1d6fbf398e02b584c98235654bb37c67, type: 3}
-  MaximumStacks: 20
+  _id: 3c5dbc3c4293b9041be17fe34f3d06ce
+  ItemName: Book Nonequipable
+  Icon: {fileID: 21300000, guid: 2ee6ee179ec1a3e4abea5aaeddaa4ce7, type: 3}
+  MaximumStacks: 1

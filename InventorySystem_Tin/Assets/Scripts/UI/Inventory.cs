@@ -18,18 +18,20 @@ public class Inventory : MonoBehaviour,IItemContainer
 
 
     public event Action<ItemSlot> OnRightClickEvent;
+    public event Action<ItemSlot> OnMiddleClickEvent;
     public event Action<ItemSlot> OnBeginDragEvent;
     public event Action<ItemSlot> OnEndDragEvent;
     public event Action<ItemSlot> OnDragEvent;
     public event Action<ItemSlot> OnDropEvent;
 
-    private void Start()
+    protected virtual void Start()
     {
         for (int i = 0; i < _itemSlots.Length; i++)
         {
             _itemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
             _itemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
             _itemSlots[i].OnRightClickEvent += OnRightClickEvent;
+            _itemSlots[i].OnMiddleClickEvent += OnMiddleClickEvent;
             _itemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
             _itemSlots[i].OnEndDragEvent += OnEndDragEvent;
             _itemSlots[i].OnDragEvent += OnDragEvent;
@@ -37,6 +39,8 @@ public class Inventory : MonoBehaviour,IItemContainer
         }
         SetStartingItems();
     }
+
+
 
     private void OnValidate()
     {
@@ -48,7 +52,18 @@ public class Inventory : MonoBehaviour,IItemContainer
         SetStartingItems();
     }
 
-
+    public void AddToItemSlots(ItemSlot noviItemSlot)
+    {
+        
+    }
+    public ItemSlot[] GetItemSlots()
+    {
+        return _itemSlots;
+    }
+    public ItemSlot GetItemSlotOfIndexI(int i)
+    {
+        return _itemSlots[i];
+    }
     public bool AddItem(Item item)
     {
         for (int i = 0; i < _itemSlots.Length; i++)
@@ -65,9 +80,21 @@ public class Inventory : MonoBehaviour,IItemContainer
 
     public bool AddItem(Item item,int amountToAdd)
     {
+
+
         for (int i = 0; i < _itemSlots.Length; i++)
         {
-            if (_itemSlots[i].Item == null || (_itemSlots[i].Item.ID == item.ID && _itemSlots[i].Amount < item.MaximumStacks))
+            if (_itemSlots[i].CanAddStack(item,_itemSlots[i].Amount))
+            {
+                _itemSlots[i].Item = item;
+                _itemSlots[i].Amount += amountToAdd;
+                return true;
+            }
+        }
+
+        for (int i = 0; i < _itemSlots.Length; i++)
+        {
+            if (_itemSlots[i].Item == null )
             {
                 _itemSlots[i].Item = item;
                 _itemSlots[i].Amount+= amountToAdd;
@@ -125,23 +152,18 @@ public class Inventory : MonoBehaviour,IItemContainer
 
     public void SetStartingItems()
     {
+        Clear();
         int i = 0;
-        for (; i < _startingItems.Count && i<_itemSlots.Length; i++)
+        for (; i < _startingItems.Count && i < _itemSlots.Length; i++)
         {
             _itemSlots[i].Item = _startingItems[i].GetCopy();
             _itemSlots[i].Amount = 1;
         }
-        for (; i < _itemSlots.Length; i++)
-        {
-            _itemSlots[i].Item = null;
-            _itemSlots[i].Amount = 0;
-        }
         
+
+
+  
     }
-
-
-
-
 
     public int ItemCount(string itemID)
     {
@@ -156,5 +178,11 @@ public class Inventory : MonoBehaviour,IItemContainer
         return numberOfItemsCounter;
     }
 
- 
+    public void Clear()
+    {
+        for (int i = 0; i < _itemSlots.Length; i++)
+        {
+            _itemSlots[i].Item = null;
+        }
+    }
 }

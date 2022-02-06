@@ -12,7 +12,7 @@ public enum EquipmentType
 	Accessory,
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Item/Equipable Item")]
 public class EquippableItem : Item
 {
 	public int StrengthBonus;
@@ -63,12 +63,15 @@ public class EquippableItem : Item
 
 	public override string GetDescription()
 	{
+
+		
 		string descriptionText="";
 
 		descriptionText +="Str "+ StrengthBonus +"\n"+
 		"Agl "+ AgilityBonus +"\n"+
 		"Int "+ IntelligenceBonus +"\n"+
-		"Vit "+ VitalityBonus;
+		"Vit "+ VitalityBonus+"\n \n"
+		+ base.GetDescription(); 
 
 
 		return descriptionText;

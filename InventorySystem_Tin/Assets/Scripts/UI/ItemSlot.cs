@@ -17,12 +17,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     
 
     public event Action<ItemSlot> OnRightClickEvent;
+    public event Action<ItemSlot> OnMiddleClickEvent;
     public event Action<ItemSlot> OnBeginDragEvent;
     public event Action<ItemSlot> OnEndDragEvent;
     public event Action<ItemSlot> OnDragEvent;
     public event Action<ItemSlot> OnDropEvent;
 
 
+    protected bool _isPointerOver;
     //ne zelim gasiti image nego staviti da bude transparentna
     private Color _normalColor = Color.white;
     private Color _disabledColor = new Color(1, 1, 1, 0);
@@ -37,6 +39,10 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         set
         {
             _item = value;
+
+            if (_item == null && Amount != 0)
+                Amount = 0;
+
             if (_item == null)
             {
                 _image.color = _disabledColor;
@@ -47,6 +53,13 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
                 _image.color = _normalColor;
             }
 
+
+            if (_isPointerOver)
+            {
+                //radim refresh tooltipa da izbjegnem bug
+                OnPointerExit(null);
+                OnPointerEnter(null);
+            }
         }
     }
 
@@ -58,6 +71,13 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         set
         {
             _amount = value;
+
+            if (_amount < 0) 
+                _amount = 0;
+            if (_amount == 0 && Item!=null)
+            {
+                Item = null;
+            }
 
             if (_item != null && _item.MaximumStacks > 1 && _amount > 1)
             {
@@ -81,6 +101,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     }
 
+    protected virtual void OnDisable()
+    {
+        if(_isPointerOver)
+            OnPointerExit(null);
+    }
+
     public virtual bool CanReciveItem(Item item)
     {
         return true;
@@ -92,16 +118,22 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         {
             OnRightClickEvent?.Invoke(this);
         }
+        if (eventData != null && eventData.button == PointerEventData.InputButton.Middle)
+        {
+            OnMiddleClickEvent?.Invoke(this);
+        }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-
+        _isPointerOver = true;
         OnPointerEnterEvent?.Invoke(this);
         //_tooltip.ShowTooltip(Item);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        _isPointerOver = false;
+
         OnPointerExitEvent?.Invoke(this);
         //_tooltip.HideTooltip();
     }
@@ -126,8 +158,14 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         OnDropEvent?.Invoke(this);
     }
 
-    public bool CanAddStack(Item item, int amount = 1)
+
+
+    public bool CanAddStack(Item item, int amount )
     {
-        return Item != null && Item.ID == item.ID;
+        if(amount>1)
+            return Item != null && Item.ID == item.ID && amount<=item.MaximumStacks;
+        else
+            return Item != null && Item.ID == item.ID && 1 <= item.MaximumStacks;
+
     }
 }

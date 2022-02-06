@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Tin.CharacterStats;
+using System;
 
 public class Character : MonoBehaviour
 {
+    public int Health = 100;
 
     public CharacterStat Strength;
     public CharacterStat Agility;
     public CharacterStat Intelligance;
     public CharacterStat Vitality;
 
+    [SerializeField]
+    DropItemArea _dropItemArea;
     [SerializeField]
     Inventory _inventory;
     [SerializeField]
@@ -37,8 +41,11 @@ public class Character : MonoBehaviour
         _statPanel.UpdateStatValues();
 
         //Setup svih eventa:
-        _inventory.OnRightClickEvent += Equip;
-        _equippmentPanel.OnRightClickEvent += UnEquip;
+
+        //Click:
+        _inventory.OnRightClickEvent += InventoryRightClick;
+        _inventory.OnMiddleClickEvent += InventoryMiddleClick;
+        _equippmentPanel.OnRightClickEvent += EquipmentPanelRightClick;
 
         //Point Enter
         _inventory.OnPointerEnterEvent += ShowTooltip;
@@ -63,27 +70,45 @@ public class Character : MonoBehaviour
         //Drop
         _inventory.OnDropEvent += Drop;
         _equippmentPanel.OnDropEvent += Drop;
+        _dropItemArea.OnDropEvent += DropItemOutsideUI;
 
+       
     }
 
  
-    private void Equip(ItemSlot itemSlot)
-    {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
 
-        if(equippableItem != null)
+    private void InventoryRightClick(ItemSlot itemSlot)
+    {
+
+        if(itemSlot.Item is EquippableItem)
         {
-            Equip(equippableItem);
+            Equip((EquippableItem)itemSlot.Item);
+        }
+     
+    }
+    private void InventoryMiddleClick(ItemSlot itemSlot)
+    {
+
+         if (itemSlot.Item is UsableItem)
+        {
+            UsableItem usableItem = (UsableItem)itemSlot.Item;
+            usableItem.Use(this);
+
+            usableItem.IsConsumed = true;
+
+            if (usableItem.IsConsumed)
+            {
+                _inventory.RemoveItem(usableItem);
+                usableItem.RemoveItemSlot(itemSlot);
+            }
+
         }
     }
-    
-    private void UnEquip(ItemSlot itemSlot)
+    private void EquipmentPanelRightClick(ItemSlot itemSlot)
     {
-        EquippableItem equippableItem = itemSlot.Item as EquippableItem;
-
-        if(equippableItem != null)
+        if (itemSlot.Item is EquippableItem)
         {
-            UnEquip(equippableItem);
+            UnEquip((EquippableItem)itemSlot.Item);
         }
     }
 
@@ -128,7 +153,7 @@ public class Character : MonoBehaviour
 
 
         
-        if (dropItemSlot.CanAddStack(_dragItemSlot.Item))
+        if (dropItemSlot.CanAddStack(_dragItemSlot.Item,1))
         {
             AddStacks(dropItemSlot);
         }
@@ -142,6 +167,17 @@ public class Character : MonoBehaviour
 
     }
 
+    private void DropItemOutsideUI()
+    {
+        if(_dragItemSlot == null) return;
+
+
+        Debug.Log("we dropped an item");
+        _dragItemSlot.Item.DestroyItem();
+        _dragItemSlot.Item=null;
+
+
+    }
     private void AddStacks(ItemSlot dropItemSlot)
     {
         int numOfFreeSlotsLeft = dropItemSlot.Item.MaximumStacks - dropItemSlot.Amount;
