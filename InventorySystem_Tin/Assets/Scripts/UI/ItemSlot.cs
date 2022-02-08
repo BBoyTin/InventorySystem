@@ -167,8 +167,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public bool CanAddStack(Item item, int amount=1 )
     {
         
-            return Item != null && Item.ID == item.ID && Amount+amount<=item.MaximumStacks;
-       
+            return Item != null && Item.ID == item.ID && Amount+amount<=item.MaximumStacks;      
 
+    }
+
+    public void SetAmountText(string setToThisString)
+    {
+        _amountText.text = setToThisString;
     }
 }

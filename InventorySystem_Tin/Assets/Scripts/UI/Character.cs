@@ -160,6 +160,8 @@ public class Character : MonoBehaviour
             _draggableItem.sprite = itemSlot.Item.Icon;
             _draggableItem.transform.position = Input.mousePosition;
             _draggableItem.enabled = true;
+
+            itemSlot.SetAmountText("");
         }
     }
     private void EndDrag(ItemSlot itemSlot)
@@ -170,9 +172,21 @@ public class Character : MonoBehaviour
     }
     private void Drag(ItemSlot itemSlot)
     {
-        if(_draggableItem.enabled)
+        if (_draggableItem.enabled)
+        {
             _draggableItem.transform.position = Input.mousePosition;
+
+            Text amountText = _draggableItem.GetComponentInChildren<Text>();
+            amountText.text = itemSlot.Amount.ToString();
+            
+        }
+
     }
+
+  
+        
+    
+
     private void Drop(ItemSlot dropItemSlot)
     {
         if (_dragItemSlot == null)
@@ -184,15 +198,23 @@ public class Character : MonoBehaviour
         if (dropItemSlot.CanAddStack(_dragItemSlot.Item,1))
         {
             AddStacks(dropItemSlot);
+            RemoveTextFromDragedItem();
         }
 
         else if(dropItemSlot.CanReciveItem(_dragItemSlot.Item) && _dragItemSlot.CanReciveItem(dropItemSlot.Item))
         {
             SwapItemsAndUpdateAmount(dropItemSlot);
+            RemoveTextFromDragedItem();
 
         }
 
 
+    }
+
+    private void RemoveTextFromDragedItem()
+    {
+        Text amountText = _draggableItem.GetComponentInChildren<Text>();
+        amountText.text = "";
     }
 
     private void DropItemOutsideUI()
