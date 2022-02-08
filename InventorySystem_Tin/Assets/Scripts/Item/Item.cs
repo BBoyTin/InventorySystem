@@ -14,8 +14,9 @@ public class Item : ScriptableObject
     public string ItemName;
     public Sprite Icon;
 
-    //zadatak trazi da moze imati max int stacks, inace bi ovako!!!
-   // [Range(1, 1000)]
+    public bool IsPickUpable = true;
+
+    
     public int MaximumStacks = 1;
 
     private void OnValidate()
@@ -53,13 +54,7 @@ public class Item : ScriptableObject
 }
 
 
-public struct ItemAmount
-{
-    public Item Item;
-    [Range(1, 10000)]
-    public int Amount;
 
-}
 
 public interface IItemContainer
 {

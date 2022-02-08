@@ -25,6 +25,21 @@ public class Character : MonoBehaviour
     [SerializeField]
     Image _draggableItem;
 
+    [Space]
+
+    [SerializeField]
+    ItemInWorld _itemInWorld;
+    [SerializeField]
+    Transform _PlayersTransform;
+    [Space]
+
+    [SerializeField]
+    KeyCode _keyCodeToDropWithMoseClick = KeyCode.V;
+    [Space]
+
+    [SerializeField]
+    Text _usedItemsText;
+
     private ItemSlot _dragItemSlot;
 
     private void OnValidate()
@@ -80,6 +95,12 @@ public class Character : MonoBehaviour
     private void InventoryRightClick(ItemSlot itemSlot)
     {
 
+        if (Input.GetKey(_keyCodeToDropWithMoseClick))
+        {
+            DropItemToWorld(itemSlot.Item);
+            return;
+        }
+
         if(itemSlot.Item is EquippableItem)
         {
             Equip((EquippableItem)itemSlot.Item);
@@ -88,13 +109,20 @@ public class Character : MonoBehaviour
     }
     private void InventoryMiddleClick(ItemSlot itemSlot)
     {
-
+        
          if (itemSlot.Item is UsableItem)
         {
             UsableItem usableItem = (UsableItem)itemSlot.Item;
             usableItem.Use(this);
 
+
+
             usableItem.IsConsumed = true;
+
+            if (usableItem.GetItemType() == "Potion")
+            {
+                _usedItemsText.text = "Health has been changed to " + Health;
+            }
 
             if (usableItem.IsConsumed)
             {
@@ -171,12 +199,21 @@ public class Character : MonoBehaviour
     {
         if(_dragItemSlot == null) return;
 
-        _inventory.RemoveItem(_dragItemSlot.Item);
-        Debug.Log("we dropped an item");
-        //_dragItemSlot.Item.DestroyItem();
-        //_dragItemSlot.Item=null;
+        _itemInWorld.SetAmount(1);
+        _itemInWorld.SetItem(_dragItemSlot.Item);
+        Instantiate(_itemInWorld,_PlayersTransform.position+new Vector3(UnityEngine.Random.Range(-2f,2f), UnityEngine.Random.Range(-2f, 2f)),Quaternion.identity);
+        _inventory.RemoveItem(_dragItemSlot.Item);     
 
+    }
 
+    private void DropItemToWorld(Item itemToDrop)
+    {
+        if (itemToDrop == null) return;
+
+        _itemInWorld.SetAmount(1);
+        _itemInWorld.SetItem(itemToDrop);
+        Instantiate(_itemInWorld, _PlayersTransform.position + new Vector3(UnityEngine.Random.Range(-2f, 2f), UnityEngine.Random.Range(-2f, 2f)), Quaternion.identity);
+        _inventory.RemoveItem(itemToDrop);
     }
     private void AddStacks(ItemSlot dropItemSlot)
     {

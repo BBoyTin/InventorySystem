@@ -15,21 +15,22 @@ public class ItemInWorld : MonoBehaviour
 
     protected virtual void OnValidate()
     {
-        if (_spriteRenderer == null)
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        if(_item !=null)
-            _spriteRenderer.sprite = _item.Icon;
+        UpdateSpriteToItemIcon();
 
     }
 
     private void Start()
     {
+        UpdateSpriteToItemIcon();
+    }
+
+    private void UpdateSpriteToItemIcon()
+    {
         if (_spriteRenderer == null)
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if(_item != null)
-        _spriteRenderer.sprite = _item.Icon;
+        if (_item != null)
+            _spriteRenderer.sprite = _item.Icon;
     }
 
     public int GetAmountOfThisItem()
@@ -39,6 +40,14 @@ public class ItemInWorld : MonoBehaviour
     public Item GetItem()
     {
         return _item;
+    }
+    public void SetItem(Item item)
+    {
+        _item = item;
+    }
+    public void SetAmount(int amountOfItemInWorld)
+    {
+        _amaontOfThisItem = amountOfItemInWorld;
     }
 
 }

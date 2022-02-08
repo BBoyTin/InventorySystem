@@ -823,7 +823,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.9444399, y: -0.23016067, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1185952382}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -859,6 +860,110 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory: {fileID: 239183240}
+  _pickUpText: {fileID: 1901958724}
+  _debugText: {fileID: 200935116}
+  _keyCodeToPickUp: 102
+--- !u!1 &200935114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 200935115}
+  - component: {fileID: 200935117}
+  - component: {fileID: 200935116}
+  m_Layer: 5
+  m_Name: DebugText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &200935115
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200935114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3278294521791968079}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 300}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &200935116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200935114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.10566056, g: 1, b: 0, a: 0.69803923}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 33
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 55
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Debug Text to show permanent anduseble items
+
+'
+--- !u!222 &200935117
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200935114}
+  m_CullTransparentMesh: 0
+--- !u!114 &202887128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Sword 1(Clone)
+  m_EditorClassIdentifier: 
+  _id: 44e9024158b7bf242a2bb192a12684f8
+  ItemName: Sword+
+  Icon: {fileID: 21300000, guid: d754d2baf0416aa43bec1dc48df6ef2f, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 20
+  AgilityBonus: 4
+  IntelligenceBonus: 2
+  VitalityBonus: 6
+  EquipmentType: 2
 --- !u!224 &218801616 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8087621767249578083, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -902,7 +1007,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0000038978, y: 12}
+  m_AnchoredPosition: {x: 0, y: 12}
   m_SizeDelta: {x: 940.3, y: 500}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &239183238
@@ -1021,6 +1126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b739737c8905874c8f724edb174aafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &307178888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8788591985541805926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &344147859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8667701317016699278, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -1033,27 +1144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &351696332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Helmet(Clone)
-  m_EditorClassIdentifier: 
-  _id: 7cb24db957693c646b18b356c24b87c9
-  ItemName: Helemet1
-  Icon: {fileID: 21300000, guid: db832f955dc64aa438c2e97e633927d3, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 3
-  AgilityBonus: 3
-  IntelligenceBonus: 3
-  VitalityBonus: 6
-  EquipmentType: 0
 --- !u!224 &385950857 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8087621767249578083, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -1189,19 +1279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebaa02930ced054cb746304e3ca53fa, type: 3}
---- !u!114 &446149408 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8667701317016699278, guid: 4ebaa02930ced054cb746304e3ca53fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1099937324}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &474464163
+--- !u!114 &397007118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1216,12 +1294,47 @@ MonoBehaviour:
   _id: 3f666477aeff7c84fb11788747ec9678
   ItemName: Sword1
   Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
+  IsPickUpable: 1
   MaximumStacks: 1
   StrengthBonus: 1
   AgilityBonus: 1
   IntelligenceBonus: 1
   VitalityBonus: 1
   EquipmentType: 2
+--- !u!114 &446149408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8667701317016699278, guid: 4ebaa02930ced054cb746304e3ca53fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1099937324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &486148689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Helmet 1(Clone)
+  m_EditorClassIdentifier: 
+  _id: ab5d911be5976e647af65f4dff993ed2
+  ItemName: helmet++
+  Icon: {fileID: 21300000, guid: d6c1ac322d2455744ad3f220db56cee4, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 22
+  AgilityBonus: 5
+  IntelligenceBonus: 32
+  VitalityBonus: 32
+  EquipmentType: 0
 --- !u!1001 &505958094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2562,27 +2675,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764789316}
   m_CullTransparentMesh: 0
---- !u!114 &827114796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Armor(Clone)
-  m_EditorClassIdentifier: 
-  _id: 9a244fb1d8d04d947837f98c55b41617
-  ItemName: Chest armor
-  Icon: {fileID: 21300000, guid: 9902ebdab2b25e34189faaaf892ff92b, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 0
-  AgilityBonus: 0
-  IntelligenceBonus: 0
-  VitalityBonus: 20
-  EquipmentType: 1
 --- !u!114 &862764109 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3547341653015726826, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -2754,6 +2846,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &962826806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Sword(Clone)
+  m_EditorClassIdentifier: 
+  _id: 3f666477aeff7c84fb11788747ec9678
+  ItemName: Sword1
+  Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 1
+  AgilityBonus: 1
+  IntelligenceBonus: 1
+  VitalityBonus: 1
+  EquipmentType: 2
 --- !u!1 &967788958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,48 +3107,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebaa02930ced054cb746304e3ca53fa, type: 3}
---- !u!114 &1037542840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Sword 1(Clone)
-  m_EditorClassIdentifier: 
-  _id: 44e9024158b7bf242a2bb192a12684f8
-  ItemName: Sword+
-  Icon: {fileID: 21300000, guid: d754d2baf0416aa43bec1dc48df6ef2f, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 20
-  AgilityBonus: 4
-  IntelligenceBonus: 2
-  VitalityBonus: 6
-  EquipmentType: 2
---- !u!114 &1066651236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Sword(Clone)
-  m_EditorClassIdentifier: 
-  _id: 3f666477aeff7c84fb11788747ec9678
-  ItemName: Sword1
-  Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 1
-  AgilityBonus: 1
-  IntelligenceBonus: 1
-  VitalityBonus: 1
-  EquipmentType: 2
 --- !u!114 &1089315583 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3547341653015726826, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -3342,6 +3414,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1140273887}
   m_CullTransparentMesh: 0
+--- !u!114 &1155461292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Sword(Clone)
+  m_EditorClassIdentifier: 
+  _id: 3f666477aeff7c84fb11788747ec9678
+  ItemName: Sword1
+  Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 1
+  AgilityBonus: 1
+  IntelligenceBonus: 1
+  VitalityBonus: 1
+  EquipmentType: 2
 --- !u!1 &1158167426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,6 +3468,8 @@ Transform:
   - {fileID: 1956992753}
   - {fileID: 757123379}
   - {fileID: 2061848845}
+  - {fileID: 307178888}
+  - {fileID: 1641096103}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3518,6 +3614,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b739737c8905874c8f724edb174aafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1185952381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1185952382}
+  - component: {fileID: 1185952383}
+  m_Layer: 0
+  m_Name: SpawnIndefinitely
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1185952382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185952381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 181095762}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1185952383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185952381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65a64fca88d47d4caea84bb08527d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemInWorld: {fileID: 7996967611389552498, guid: 8c6d2207d04c2d94787518212d0de2b4,
+    type: 3}
+  _keyCodeToSpawn: 32
+  _itemsToSpawn:
+  - {fileID: 11400000, guid: 9f6a8d6da905d964f87539c96b0bb22c, type: 2}
+  - {fileID: 11400000, guid: 0c3b4c57ff2fb8343a9be5a159a94e56, type: 2}
+  - {fileID: 11400000, guid: 83155688e668f094b94821e05746e6d1, type: 2}
+  - {fileID: 11400000, guid: 1d3fda805bb4f1749b35fce9206a2b85, type: 2}
+--- !u!114 &1215094425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Helmet(Clone)
+  m_EditorClassIdentifier: 
+  _id: 7cb24db957693c646b18b356c24b87c9
+  ItemName: Helemet1
+  Icon: {fileID: 21300000, guid: db832f955dc64aa438c2e97e633927d3, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 3
+  AgilityBonus: 3
+  IntelligenceBonus: 3
+  VitalityBonus: 6
+  EquipmentType: 0
 --- !u!1 &1252024292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3741,6 +3910,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebaa02930ced054cb746304e3ca53fa, type: 3}
+--- !u!114 &1279265696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Sword(Clone)
+  m_EditorClassIdentifier: 
+  _id: 3f666477aeff7c84fb11788747ec9678
+  ItemName: Sword1
+  Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 1
+  AgilityBonus: 1
+  IntelligenceBonus: 1
+  VitalityBonus: 1
+  EquipmentType: 2
 --- !u!1001 &1386071145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3876,13 +4067,7 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1270483658}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1427389939 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8087621767249578083, guid: 4ebaa02930ced054cb746304e3ca53fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 526853179}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1441514576
+--- !u!114 &1418502755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3892,17 +4077,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Armor(Clone)
+  m_Name: Helmet 1(Clone)
   m_EditorClassIdentifier: 
-  _id: 9a244fb1d8d04d947837f98c55b41617
-  ItemName: Chest armor
-  Icon: {fileID: 21300000, guid: 9902ebdab2b25e34189faaaf892ff92b, type: 3}
+  _id: ab5d911be5976e647af65f4dff993ed2
+  ItemName: helmet++
+  Icon: {fileID: 21300000, guid: d6c1ac322d2455744ad3f220db56cee4, type: 3}
+  IsPickUpable: 1
   MaximumStacks: 1
-  StrengthBonus: 0
-  AgilityBonus: 0
-  IntelligenceBonus: 0
-  VitalityBonus: 20
-  EquipmentType: 1
+  StrengthBonus: 22
+  AgilityBonus: 5
+  IntelligenceBonus: 32
+  VitalityBonus: 32
+  EquipmentType: 0
+--- !u!224 &1427389939 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8087621767249578083, guid: 4ebaa02930ced054cb746304e3ca53fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 526853179}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1452942667 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8667701317016699278, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -3927,6 +4119,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1469362157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Armor(Clone)
+  m_EditorClassIdentifier: 
+  _id: 9a244fb1d8d04d947837f98c55b41617
+  ItemName: Chest armor
+  Icon: {fileID: 21300000, guid: 9902ebdab2b25e34189faaaf892ff92b, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 0
+  AgilityBonus: 0
+  IntelligenceBonus: 0
+  VitalityBonus: 20
+  EquipmentType: 1
 --- !u!224 &1477204732 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8087621767249578083, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -4057,27 +4271,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1544003413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Sword(Clone)
-  m_EditorClassIdentifier: 
-  _id: 3f666477aeff7c84fb11788747ec9678
-  ItemName: Sword1
-  Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 1
-  AgilityBonus: 1
-  IntelligenceBonus: 1
-  VitalityBonus: 1
-  EquipmentType: 2
 --- !u!1 &1551528583
 GameObject:
   m_ObjectHideFlags: 0
@@ -4311,7 +4504,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775701, y: 1}
+    m_SensorSize: {x: 1.7789662, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4335,6 +4528,119 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1641096102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641096103}
+  - component: {fileID: 1641096106}
+  - component: {fileID: 1641096105}
+  - component: {fileID: 1641096104}
+  m_Layer: 0
+  m_Name: PermanentUsage Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1641096103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641096102}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.14, y: -6.68, z: 0.5332031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1158167427}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1641096104
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641096102}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.1
+--- !u!114 &1641096105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641096102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9510a38a9458cd04aa6ca8227e2e7563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 11400000, guid: 83155688e668f094b94821e05746e6d1, type: 2}
+  _spriteRenderer: {fileID: 1641096106}
+  _amaontOfThisItem: 1
+--- !u!212 &1641096106
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641096102}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: da3d6f93e4f82d9459d207c459e0f427, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 0.7}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1649854916
 GameObject:
   m_ObjectHideFlags: 0
@@ -4547,27 +4853,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebaa02930ced054cb746304e3ca53fa, type: 3}
---- !u!114 &1720163573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Helmet 1(Clone)
-  m_EditorClassIdentifier: 
-  _id: ab5d911be5976e647af65f4dff993ed2
-  ItemName: helmet++
-  Icon: {fileID: 21300000, guid: d6c1ac322d2455744ad3f220db56cee4, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 22
-  AgilityBonus: 5
-  IntelligenceBonus: 32
-  VitalityBonus: 32
-  EquipmentType: 0
 --- !u!114 &1726730254 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3547341653015726826, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -4721,27 +5006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b739737c8905874c8f724edb174aafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1736504984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Sword(Clone)
-  m_EditorClassIdentifier: 
-  _id: 3f666477aeff7c84fb11788747ec9678
-  ItemName: Sword1
-  Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 1
-  AgilityBonus: 1
-  IntelligenceBonus: 1
-  VitalityBonus: 1
-  EquipmentType: 2
 --- !u!1001 &1751026856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5598,6 +5862,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866284858}
   m_CullTransparentMesh: 0
+--- !u!1 &1901958722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1901958723}
+  - component: {fileID: 1901958725}
+  - component: {fileID: 1901958724}
+  m_Layer: 5
+  m_Name: PickUpText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1901958723
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901958722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3278294521791968079}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 251.3, y: 150}
+  m_SizeDelta: {x: 502.6, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1901958724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901958722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.10566056, g: 1, b: 0, a: 0.5647059}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 55
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 5
+    m_MaxSize: 55
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Pick up with F item name
+--- !u!222 &1901958725
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901958722}
+  m_CullTransparentMesh: 0
 --- !u!1 &1924288462
 GameObject:
   m_ObjectHideFlags: 0
@@ -5683,6 +6024,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1943085749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
+  m_Name: Armor(Clone)
+  m_EditorClassIdentifier: 
+  _id: 9a244fb1d8d04d947837f98c55b41617
+  ItemName: Chest armor
+  Icon: {fileID: 21300000, guid: 9902ebdab2b25e34189faaaf892ff92b, type: 3}
+  IsPickUpable: 1
+  MaximumStacks: 1
+  StrengthBonus: 0
+  AgilityBonus: 0
+  IntelligenceBonus: 0
+  VitalityBonus: 20
+  EquipmentType: 1
 --- !u!1 &1956992752
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,27 +6385,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2006403794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 801fac9c7388da446a0a9e19bb925f1f, type: 3}
-  m_Name: Helmet 1(Clone)
-  m_EditorClassIdentifier: 
-  _id: ab5d911be5976e647af65f4dff993ed2
-  ItemName: helmet++
-  Icon: {fileID: 21300000, guid: d6c1ac322d2455744ad3f220db56cee4, type: 3}
-  MaximumStacks: 1
-  StrengthBonus: 22
-  AgilityBonus: 5
-  IntelligenceBonus: 32
-  VitalityBonus: 32
-  EquipmentType: 0
 --- !u!224 &2008934195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8087621767249578083, guid: 4ebaa02930ced054cb746304e3ca53fa,
@@ -6186,7 +6528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2131044785
+--- !u!114 &2096404632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6201,6 +6543,7 @@ MonoBehaviour:
   _id: 3f666477aeff7c84fb11788747ec9678
   ItemName: Sword1
   Icon: {fileID: 21300000, guid: 07bc52b234c294b40ad707c458c601dc, type: 3}
+  IsPickUpable: 1
   MaximumStacks: 1
   StrengthBonus: 1
   AgilityBonus: 1
@@ -6855,6 +7198,8 @@ RectTransform:
   - {fileID: 3278294522138530417}
   - {fileID: 3278294523039591974}
   - {fileID: 3278294522252545614}
+  - {fileID: 1901958723}
+  - {fileID: 200935115}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7225,8 +7570,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -69.436615}
-  m_SizeDelta: {x: 410, y: 26.619719}
+  m_AnchoredPosition: {x: 225, y: -66.43533}
+  m_SizeDelta: {x: 410, y: 24.227129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3278294521841621791
 CanvasRenderer:
@@ -7954,6 +8299,11 @@ MonoBehaviour:
   _statPanel: {fileID: 3278294521538692972}
   _itemTooltip: {fileID: 3278294522138530416}
   _draggableItem: {fileID: 3278294523039591993}
+  _itemInWorld: {fileID: 7996967611389552498, guid: 8c6d2207d04c2d94787518212d0de2b4,
+    type: 3}
+  _PlayersTransform: {fileID: 181095762}
+  _keyCodeToDropWithMoseClick: 118
+  _usedItemsText: {fileID: 200935116}
 --- !u!224 &3278294522544324681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7973,8 +8323,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 17.800781, y: 0}
-  m_SizeDelta: {x: 1248.5, y: 1710.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1267.7, y: 1733.7}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &3278294522544324726
 GameObject:
@@ -9224,8 +9574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -28.06338}
-  m_SizeDelta: {x: 410, y: 36.12676}
+  m_AnchoredPosition: {x: 225, y: -27.160883}
+  m_SizeDelta: {x: 410, y: 34.321766}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3278294523228028601
 GameObject:
@@ -9461,8 +9811,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 225, y: -168.80281}
-  m_SizeDelta: {x: 410, y: 152.11267}
+  m_AnchoredPosition: {x: 225, y: -164.25867}
+  m_SizeDelta: {x: 410, y: 151.41956}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3278294523348422816
 MonoBehaviour:
@@ -9733,3 +10083,84 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 1
   m_ConstraintCount: 8
+--- !u!1001 &8788591985541805926
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1158167427}
+    m_Modifications:
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5332031
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187054978363370581, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3060031450711591551, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_Name
+      value: ItemInWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624150391570481600, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2ee6ee179ec1a3e4abea5aaeddaa4ce7,
+        type: 3}
+    - target: {fileID: 7996967611389552498, guid: 8c6d2207d04c2d94787518212d0de2b4,
+        type: 3}
+      propertyPath: _item
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c5dbc3c4293b9041be17fe34f3d06ce,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8c6d2207d04c2d94787518212d0de2b4, type: 3}
