@@ -171,10 +171,10 @@ public class Character : MonoBehaviour
     {
         if(_dragItemSlot == null) return;
 
-
+        _inventory.RemoveItem(_dragItemSlot.Item);
         Debug.Log("we dropped an item");
-        _dragItemSlot.Item.DestroyItem();
-        _dragItemSlot.Item=null;
+        //_dragItemSlot.Item.DestroyItem();
+        //_dragItemSlot.Item=null;
 
 
     }

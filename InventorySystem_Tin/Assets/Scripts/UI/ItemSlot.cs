@@ -85,6 +85,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
             }
             else
             {
+                
                 _amountText.text = "";
             }
         }
@@ -163,12 +164,11 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
 
 
-    public bool CanAddStack(Item item, int amount )
+    public bool CanAddStack(Item item, int amount=1 )
     {
-        if(amount>1)
-            return Item != null && Item.ID == item.ID && amount<=item.MaximumStacks;
-        else
-            return Item != null && Item.ID == item.ID && 1 <= item.MaximumStacks;
+        
+            return Item != null && Item.ID == item.ID && Amount+amount<=item.MaximumStacks;
+       
 
     }
 }

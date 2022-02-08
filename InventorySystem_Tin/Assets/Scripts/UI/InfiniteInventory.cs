@@ -6,12 +6,12 @@ using UnityEngine;
 public class InfiniteInventory : MonoBehaviour, IItemContainer
 {
 
-    [SerializeField] GameObject itemSlotPrefab;
+    [SerializeField] GameObject _itemSlotPrefab;
 
-    [SerializeField] int maxSlots;
+    [SerializeField] int _maxSlots;
     public int MaxSlots
     {
-        get { return maxSlots; }
+        get { return _maxSlots; }
         set { SetMaxSlots(value); }
     }
 
@@ -37,22 +37,26 @@ public class InfiniteInventory : MonoBehaviour, IItemContainer
 
     protected virtual void Start()
     {
-        SetMaxSlots(maxSlots);
 
         for (int i = 0; i < _itemSlots.Count; i++)
         {
-            _itemSlots[i].OnPointerEnterEvent += OnPointerEnterEvent;
-            _itemSlots[i].OnPointerExitEvent += OnPointerExitEvent;
-            _itemSlots[i].OnRightClickEvent += OnRightClickEvent;
-            _itemSlots[i].OnMiddleClickEvent += OnMiddleClickEvent;
-            _itemSlots[i].OnBeginDragEvent += OnBeginDragEvent;
-            _itemSlots[i].OnEndDragEvent += OnEndDragEvent;
-            _itemSlots[i].OnDragEvent += OnDragEvent;
-            _itemSlots[i].OnDropEvent += OnDropEvent;
+            UpdateEvents(i);
         }
+        SetMaxSlots(_maxSlots);
         SetStartingItems();
     }
 
+    private void UpdateEvents(int indexOfItemSlotToUpdate)
+    {
+        _itemSlots[indexOfItemSlotToUpdate].OnPointerEnterEvent += OnPointerEnterEvent;
+        _itemSlots[indexOfItemSlotToUpdate].OnPointerExitEvent += OnPointerExitEvent;
+        _itemSlots[indexOfItemSlotToUpdate].OnRightClickEvent += OnRightClickEvent;
+        _itemSlots[indexOfItemSlotToUpdate].OnMiddleClickEvent += OnMiddleClickEvent;
+        _itemSlots[indexOfItemSlotToUpdate].OnBeginDragEvent += OnBeginDragEvent;
+        _itemSlots[indexOfItemSlotToUpdate].OnEndDragEvent += OnEndDragEvent;
+        _itemSlots[indexOfItemSlotToUpdate].OnDragEvent += OnDragEvent;
+        _itemSlots[indexOfItemSlotToUpdate].OnDropEvent += OnDropEvent;
+    }
 
 
     private void OnValidate()
@@ -64,39 +68,44 @@ public class InfiniteInventory : MonoBehaviour, IItemContainer
         {
             SetStartingItems();
         }
-
-        
+       
     }
 
     private void SetMaxSlots(int value)
     {
         if (value <= 0)
         {
-            maxSlots = 1;
+            _maxSlots = 1;
         }
         else
         {
-            maxSlots = value;
+            _maxSlots = value;
         }
 
-        if (maxSlots < _itemSlots.Count)
+        if (_maxSlots < _itemSlots.Count)
         {
-            for (int i = maxSlots; i < _itemSlots.Count; i++)
+            for (int i = _maxSlots; i < _itemSlots.Count; i++)
             {
                 Destroy(_itemSlots[i].transform.parent.gameObject);
             }
-            int diff = _itemSlots.Count - maxSlots;
-            _itemSlots.RemoveRange(maxSlots, diff);
+            int diff = _itemSlots.Count - _maxSlots;
+            _itemSlots.RemoveRange(_maxSlots, diff);
         }
-        else if (maxSlots > _itemSlots.Count)
+        else if (_maxSlots > _itemSlots.Count)
         {
-            int diff = maxSlots - _itemSlots.Count;
+            int beforeUpdate = _itemSlots.Count;
+            int diff = _maxSlots - _itemSlots.Count;
 
             for (int i = 0; i < diff; i++)
             {
-                GameObject gameObject = Instantiate(itemSlotPrefab);
+                GameObject gameObject = Instantiate(_itemSlotPrefab);
                 gameObject.transform.SetParent(_itemsParent, worldPositionStays: false);
                 _itemSlots.Add(gameObject.GetComponentInChildren<ItemSlot>());
+                
+            }
+            for (int i = beforeUpdate; i < _itemSlots.Count; i++)
+            {
+                UpdateEvents(i);
             }
         }
     }
@@ -106,7 +115,7 @@ public class InfiniteInventory : MonoBehaviour, IItemContainer
 
         if (IsFull())
         {
-            MaxSlots += 8;
+            SetMaxSlots(MaxSlots + 8);
         }
 
         for (int i = 0; i < _itemSlots.Count; i++)
@@ -125,12 +134,12 @@ public class InfiniteInventory : MonoBehaviour, IItemContainer
     {
         if (IsFull())
         {
-            MaxSlots += 8;
+            SetMaxSlots(MaxSlots + 8);
         }
 
         for (int i = 0; i < _itemSlots.Count; i++)
         {
-            if (_itemSlots[i].CanAddStack(item, _itemSlots[i].Amount))
+            if (_itemSlots[i].CanAddStack(item, amountToAdd))
             {
                 _itemSlots[i].Item = item;
                 _itemSlots[i].Amount += amountToAdd;
@@ -151,6 +160,10 @@ public class InfiniteInventory : MonoBehaviour, IItemContainer
     }
     public Item RemoveItem(string itemID)
     {
+        if (IsHalfFull())
+        {
+            SetMaxSlots(MaxSlots / 2);
+        }
         for (int i = 0; i < _itemSlots.Count; i++)
         {
             Item item = _itemSlots[i].Item;
@@ -168,6 +181,12 @@ public class InfiniteInventory : MonoBehaviour, IItemContainer
     }
     public bool RemoveItem(Item item)
     {
+        if (IsHalfFull())
+        {
+            Debug.Log("dropali smo preko pola itema");
+            SetMaxSlots(MaxSlots / 2);
+        }
+
         for (int i = 0; i < _itemSlots.Count; i++)
         {
             if (_itemSlots[i].Item == item)
@@ -195,7 +214,21 @@ public class InfiniteInventory : MonoBehaviour, IItemContainer
         }
         return true;
     }
-
+    public bool IsHalfFull()
+    {
+        int numOfUsedSlots = 0;
+        for (int i = 0; i < _itemSlots.Count; i++)
+        {
+            if(_itemSlots[i] != null)
+            {
+                numOfUsedSlots++;
+            }
+        }
+        if (numOfUsedSlots  <= (MaxSlots/2))
+            return true;
+        else
+            return false;
+    }
     public void SetStartingItems()
     {
         Clear();
