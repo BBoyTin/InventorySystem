@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
-
+#endif
 
 [CreateAssetMenu(menuName = "Item/Basic Item")]
 public class Item : ScriptableObject
@@ -19,6 +20,8 @@ public class Item : ScriptableObject
     
     public int MaximumStacks = 1;
 
+
+#if UNITY_EDITOR
     private void OnValidate()
     {
         //koristim da automatski postavi id jednak unikantom idu od Unitya
@@ -26,7 +29,7 @@ public class Item : ScriptableObject
         _id = AssetDatabase.AssetPathToGUID(path);
 
     }
-
+#endif
     public virtual Item GetCopy()
     {
         return this;
